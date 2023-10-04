@@ -1,28 +1,21 @@
 const express = require('express')
-const Todo = require('../models/todoModel')
+
+const {
+  createTodo,
+  getTodo,
+  getTodos
+} = require('../controllers/TodoController')
 
 const router = express.Router();
 
 // GET   all todos
-router.get('/', (req, res) => {
-  res.json({ msg: 'get all todos' })
-})
+router.get('/', getTodos)
 
 // GET a single todo
-router.get('/:id', (req, res) => {
-  res.json({ msg: 'GET a single todo' })
-})
+router.get('/:id', getTodo)
 
 // POST a new todo
-router.post('/', async (req, res) => {
-  const { title, description, number } = req.body;
-  try {
-    const todo = await Todo.create({ title, description, number });
-    res.status(200).json(todo);
-  } catch (error) {
-    res.status(400).json({ error: error.message })
-  }
-})
+router.post('/', createTodo)
 
 // DELETE a todo
 router.delete('/:id', (req, res) => {
