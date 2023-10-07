@@ -1,3 +1,11 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+
+@import url('https://fonts.googleapis.com/css2?family=Caprasimo&family=Permanent+Marker&family=Playfair+Display&display=swap');
+* {
+  font-family: 'Caprasi';
+  margin: 0;
+}
+
