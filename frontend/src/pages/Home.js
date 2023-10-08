@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react'
 import Todo from "../components/Todo"
+import TodoForm from '../components/TodoForm';
 
 
 const Home = () => {
@@ -23,6 +24,7 @@ const Home = () => {
       {todos && todos.map((todo) =>
         <Todo key={todo._id} todo={todo} />
       )}
+      <TodoForm />
     </>
   );
 }
