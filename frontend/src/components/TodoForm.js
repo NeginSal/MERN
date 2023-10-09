@@ -1,6 +1,9 @@
 import { useState } from 'react'
+import { useTodosContext } from '../hooks/useTodosContext'
 
 const TodoForm = () => {
+
+  const { dispatch } = useTodosContext()
   const [title, setTitle] = useState('')
   const [description, setDescription] = useState('')
   const [number, setNumber] = useState('')
@@ -19,7 +22,7 @@ const TodoForm = () => {
       }
     })
 
-    const data = response.json()
+    const data = await response.json()
 
     if (!response.ok) {
       setError(data.error)
@@ -29,6 +32,7 @@ const TodoForm = () => {
       setDescription('')
       setNumber('')
       setError(null)
+      dispatch({ type: 'CREATE_TODO', payload: data })
     }
   }
 
@@ -54,6 +58,7 @@ const TodoForm = () => {
         onChange={(e) => setNumber(e.target.value)}
       />
       <button>Add Todo</button>
+      {error && <div>{error}</div>}
     </form>
   );
 }
