@@ -8,6 +8,7 @@ const TodoForm = () => {
   const [description, setDescription] = useState('')
   const [number, setNumber] = useState('')
   const [error, setError] = useState(null)
+  const [emptyFields, setEmptyFields] = useState([])
 
   const handleFormSubmit = async (e) => {
     e.preventDefault()
@@ -26,8 +27,10 @@ const TodoForm = () => {
 
     if (!response.ok) {
       setError(data.error)
+      setEmptyFields(data.emptyFields)
     }
     if (response.ok) {
+      setEmptyFields([])
       setTitle('')
       setDescription('')
       setNumber('')
@@ -44,18 +47,23 @@ const TodoForm = () => {
         type='text'
         value={title}
         onChange={(e) => setTitle(e.target.value)}
+        className={emptyFields.includes('title') ? 'error' : ''}
       />
+
       <label>description</label>
       <input
         type='text'
         value={description}
         onChange={(e) => setDescription(e.target.value)}
+        className={emptyFields.includes('description') ? 'error' : ''}
       />
+
       <label>number</label>
       <input
         type='text'
         value={number}
         onChange={(e) => setNumber(e.target.value)}
+        className={emptyFields.includes('number') ? 'error' : ''}
       />
       <button>Add Todo</button>
       {error && <div>{error}</div>}
