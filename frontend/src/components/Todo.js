@@ -1,5 +1,9 @@
 import { useTodosContext } from '../hooks/useTodosContext'
 
+// date fns
+import formatDistanceToNow from 'date-fns/formatDistanceToNow'
+
+
 const Todo = ({ todo }) => {
   const { dispatch } = useTodosContext();
 
@@ -22,7 +26,7 @@ const Todo = ({ todo }) => {
       <p>title - {todo.title}</p>
       <p>description - {todo.description}</p>
       <p>number - {todo.number}</p>
-      <p>{todo.createdAt}</p>
+      <p>{formatDistanceToNow(new Date(todo.createdAt), { addSuffix: true })}</p>
       <button onClick={handleDelete}>Delete</button>
     </div>
   );
