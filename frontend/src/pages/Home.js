@@ -1,42 +1,6 @@
-// import { useEffect } from "react"
-// import { useTodosContext } from "../hooks/useTodosContext"
-
-// // components
-// import Todo from "../components/Todo"
-// // import WorkoutForm from "../components/WorkoutForm"
-
-// const Home = () => {
-//   const {todos, dispatch } = useTodosContext()
-
-//   useEffect(() => {
-//     const fetchTodos = async () => {
-//       const response = await fetch('/api/todos')
-//       const json = await response.json()
-
-//       if (response.ok) {
-//         dispatch({type: 'SET_TODO', payload: json})
-//       }
-//     }
-
-//     fetchTodos()
-//   }, [dispatch])
-
-//   return (
-//     <div >
-//       <div>
-//         {todos && todos.map(todo => (
-//           <Todo todo={todo} key={todo._id} />
-//         ))}
-//       </div>
-//       {/* <WorkoutForm /> */}
-//     </div>
-//   )
-// }
-
-// export default Home
-
-
 import { useEffect } from 'react'
+
+// components
 import Todo from "../components/Todo"
 import TodoForm from '../components/TodoForm';
 import { useTodosContext } from '../hooks/useTodosContext'

@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import { useTodosContext } from '../hooks/useTodosContext'
 
 // date fns
@@ -19,15 +20,16 @@ const Todo = ({ todo }) => {
     }
   }
 
-
-
   return (
     <div className="border border-lime-900">
       <p>title - {todo.title}</p>
       <p>description - {todo.description}</p>
       <p>number - {todo.number}</p>
       <p>{formatDistanceToNow(new Date(todo.createdAt), { addSuffix: true })}</p>
-      <button onClick={handleDelete}>Delete</button>
+      <button onClick={handleDelete} className='bg-red-400'>Delete</button>
+      <Link to={`/edit/${todo._id}`}>
+        <button >EDIT</button>
+      </Link>
     </div>
   );
 }
