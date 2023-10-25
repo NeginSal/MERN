@@ -1,9 +1,11 @@
 import { useState } from 'react'
 import { useTodosContext } from '../hooks/useTodosContext'
+import { useAuthContext } from '../hooks/useAuthContext'
 
 const TodoForm = () => {
 
   const { dispatch } = useTodosContext()
+  const { user } = useAuthContext()
   const [title, setTitle] = useState('')
   const [description, setDescription] = useState('')
   const [number, setNumber] = useState('')
@@ -13,13 +15,19 @@ const TodoForm = () => {
   const handleFormSubmit = async (e) => {
     e.preventDefault()
 
+    if (!user) {
+      setError('You must be logged in')
+      return
+    }
+
     const todo = { title, description, number }
 
     const response = await fetch('/api/todos', {
       method: 'POST',
       body: JSON.stringify(todo),
       headers: {
-        'Content-Type': 'application/json'
+        'Content-Type': 'application/json',
+        'Authorization': `Bearer ${user.token}`
       }
     })
 

@@ -3,14 +3,24 @@ import { useTodosContext } from '../hooks/useTodosContext'
 
 // date fns
 import formatDistanceToNow from 'date-fns/formatDistanceToNow'
+import { useAuthContext } from "../hooks/useAuthContext";
 
 
 const Todo = ({ todo }) => {
   const { dispatch } = useTodosContext();
+  const { user } = useAuthContext();
 
   const handleDelete = async () => {
+
+    if (!user) {
+      return
+    }
+    
     const response = await fetch('/api/todos/' + todo._id, {
-      method: 'DELETE'
+      method: 'DELETE',
+      headers: {
+        'Authorization': `Bearer ${user.token}`
+      }
     })
 
     const data = await response.json()
