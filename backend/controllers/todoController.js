@@ -3,7 +3,8 @@ const mongoose = require('mongoose')
 
 // get all todos
 const getTodos = async (req, res) => {
-  const todos = await Todo.find({}).sort({ createdAt: -1 });
+  const user_id = req.user_id
+  const todos = await Todo.find({user_id}).sort({ createdAt: -1 });
   res.status(200).json(todos)
 }
 
@@ -47,7 +48,8 @@ const createTodo = async (req, res) => {
 
   //add doc to db
   try {
-    const todo = await Todo.create({ title, description, number });
+    const user_id = req.user_id
+    const todo = await Todo.create({ title, description, number, user_id });
     res.status(200).json(todo);
   } catch (error) {
     res.status(400).json({ error: error.message })
