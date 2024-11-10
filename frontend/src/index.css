@@ -2,12 +2,13 @@
 @tailwind components;
 @tailwind utilities;
 
+@import url('https://fonts.googleapis.com/css2?family=Roboto+Condensed:ital,wght@0,100..900;1,100..900&display=swap');
 
-@import url('https://fonts.googleapis.com/css2?family=Caprasimo&family=Permanent+Marker&family=Playfair+Display&display=swap');
 * {
-  font-family: 'Caprasi';
+  font-family: "Roboto Condensed", sans-serif;
   margin: 0;
 }
+
 div.error {
   padding: 10px;
   background: #ffefef;
@@ -16,7 +17,7 @@ div.error {
   border-radius: 4px;
   margin: 20px 0;
 }
+
 input.error {
   border: 1px solid var(--error);
 }
-
